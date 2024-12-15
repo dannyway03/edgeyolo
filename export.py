@@ -24,11 +24,11 @@ def get_args():
     parser.add_argument("--no-simplify", action="store_true", help="do not simplify models(not recommend)")
     parser.add_argument("--opset", type=int, default=11, help="onnx opset")
 
-    # parser.add_argument("--relu", action="store_true", help="replace silu with relu")
+    # parser.add_argument("--relu", action="store_false", help="replace silu with relu")
 
     # tensorrt
     parser.add_argument("--trt", action="store_true", help="save tensorrt models")
-    parser.add_argument("-w", '--workspace', type=float, default=8, help='max workspace size(GB)')
+    parser.add_argument("-w", '--workspace', type=float, default=1, help='max workspace size(GB)')
 
     ## fp16 quantization
     parser.add_argument("--no-fp16", action="store_true", help="default is fp16, use this option to disable it(fp32)")
@@ -46,7 +46,7 @@ def get_args():
     parser.add_argument("--dataset", type=str, default="cfg/dataset/coco.yaml", help="calibration dataset(int8)")
     parser.add_argument("--train", action="store_true", help="use train dataset for calibration(default: val)")
     parser.add_argument("--all", action="store_true", help="use both train and val dataset")
-    parser.add_argument("--num-imgs", type=int, default=512, help="number of images for calibration, -1 for all images")
+    parser.add_argument("--num-imgs", type=int, default=-1, help="number of images for calibration, -1 for all images")
 
     return parser.parse_args()
 
